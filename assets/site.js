@@ -3,6 +3,8 @@
   'use strict';
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+  const en = document.documentElement.lang === 'en';
+  const labels = en ? { motionOn: 'Enable motion', motionOff: 'Pause motion', menuOpen: 'Open menu', menuClose: 'Close menu' } : { motionOn: 'Hareketi aç', motionOff: 'Hareketi durdur', menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat' };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const motionButton = $('.motion-control');
   let paused = false;
@@ -10,7 +12,7 @@
   const setMotion = () => {
     document.documentElement.classList.toggle('no-motion', paused || reduced.matches);
     motionButton.setAttribute('aria-pressed', String(paused));
-    motionButton.textContent = paused ? 'Hareketi aç' : 'Hareketi durdur';
+    motionButton.textContent = paused ? labels.motionOn : labels.motionOff;
   };
   motionButton.addEventListener('click', () => {
     paused = !paused;
@@ -25,14 +27,14 @@
   const closeMenu = (focus = false) => {
     menu.hidden = true;
     menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'Menüyü aç');
+    menuButton.setAttribute('aria-label', labels.menuOpen);
     if (focus) menuButton.focus();
   };
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     menu.hidden = !open;
     menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
+    menuButton.setAttribute('aria-label', open ? labels.menuClose : labels.menuOpen);
   });
   $$('a', menu).forEach(link => link.addEventListener('click', () => closeMenu()));
   document.addEventListener('click', event => {

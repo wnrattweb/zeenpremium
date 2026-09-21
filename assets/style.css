@@ -22,3 +22,13 @@
 .premium .hero .eyebrow{color:#f88b80}.premium .hero .eyebrow:before{background:#f88b80}
 @media(max-width:760px){.premium .brand-mark img{width:44.5px;left:-5.7px;top:-.8px}.premium .hero h1{font-size:clamp(40px,12.6vw,89px)}}
 @media(max-width:370px){.hero h1{font-size:clamp(43px,14vw,55px)}}
+
+/* TR / EN: available on desktop and mobile, with the current language marked. */
+.language-switch{display:inline-flex;align-items:center;border:1px solid var(--line);flex:none}
+.language-switch a{display:grid;place-items:center;min-width:31px;min-height:35px;padding:6px;font-size:11px;line-height:1;font-weight:800;letter-spacing:.03em}
+.language-switch a[aria-current=page]{background:var(--ink);color:var(--paper)}
+.language-switch a:not([aria-current]):hover{background:#e7e8df}
+.header-right{gap:17px}
+html[lang=en] .hero h1{font-size:clamp(56px,5.8vw,96px)}
+@media(min-width:761px) and (max-width:1040px){.header-right .button{display:none}.desktop-nav{gap:18px}}
+@media(max-width:760px){.header{gap:12px}.header-right{gap:10px}html[lang=en] .hero h1{font-size:clamp(38px,11.5vw,80px)}html[lang=en] .hero-orbit svg{font-size:10px;letter-spacing:1.55px}html[lang=en] .hero-actions{gap:18px}}
